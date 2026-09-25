@@ -53,7 +53,7 @@ HTML files sit in the project root, so they reference the folders like this:
 ```
 
 ```js
-import { auth, db } from "../js/firebase-config.js";   // two dots = go up to root
+import { auth, db } from "./js/firebase-config.js";
 ```
 
 ## Firebase Setup

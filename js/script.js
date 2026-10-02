@@ -122,3 +122,76 @@
 
     window.refreshUserUI = refreshUserUI;
 })();
+
+
+/* ---------- Skeleton loading controller ---------- */
+(function () {
+    "use strict";
+
+    var overlay = document.getElementById("pageSkeleton");
+    var root = document.documentElement;
+    var settled = false;
+    var shown = false;
+    var showTimer = null;
+    var hideTimer = null;
+    var hardTimer = null;
+
+    // Content turant chhupaya jata hai, isliye skeleton bhi turant chahiye.
+    // Ye chhota grace period sirf instant loads ke liye hai - unme
+    // skeleton flash na ho.
+    var SHOW_DELAY = 150;
+    var HARD_LIMIT = 20000;
+
+    function showSkeleton() {
+        if (!overlay || settled || shown) return;
+        shown = true;
+        overlay.classList.remove("is-hidden");
+        overlay.setAttribute("aria-hidden", "false");
+        hardTimer = window.setTimeout(hideSkeleton, HARD_LIMIT);
+    }
+
+    function hideSkeleton() {
+        window.clearTimeout(showTimer);
+        window.clearTimeout(hardTimer);
+        if (!overlay) return;
+        settled = true;
+        shown = false;
+        overlay.classList.add("is-fading");
+        overlay.setAttribute("aria-hidden", "true");
+        window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(function () {
+            overlay.classList.add("is-hidden");
+        }, 320);
+    }
+
+    window.hideSkeleton = hideSkeleton;
+    window.showSkeleton = showSkeleton;
+
+    window.skeletonSettled = false;
+
+    // Har page apne Firebase listener me ye call karta hai jaise hi
+    // pehla data render hota hai.
+    window.markSkeletonSettled = function () {
+        if (window.skeletonSettled) return;
+        window.skeletonSettled = true;
+        window.clearTimeout(showTimer);
+        root.classList.remove("skel-pending");
+        window.setTimeout(hideSkeleton, shown ? 60 : 0);
+    };
+
+    if (overlay) {
+        overlay.classList.add("is-hidden");
+        overlay.setAttribute("aria-hidden", "true");
+        showTimer = window.setTimeout(showSkeleton, SHOW_DELAY);
+        overlay.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }, true);
+    }
+
+    // Safety net - kisi bhi haalat me content zaroor dikhe.
+    window.setTimeout(function () {
+        root.classList.remove("skel-pending");
+        hideSkeleton();
+    }, HARD_LIMIT);
+})();

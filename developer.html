@@ -15,11 +15,97 @@
         }
     }
     </script>
+    <script>document.documentElement.className += " skel-pending";</script>
 </head>
 <body>
 
     <div class="bg-decor"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="grid"></div></div>
 
+    <div id="pageSkeleton" class="is-hidden" aria-hidden="true">
+        <div class="skw-main">
+        <div class="skw-topbar">
+            <div class="skw skw-h1" style="width:164px"></div>
+            <div class="skw-topbar-right">
+                <div class="skw skw-chip"><div class="skw skw-av"></div><div class="skw skw-chip-txt"></div></div>
+                <div class="skw skw-exit"></div>
+            </div>
+        </div>
+            <div class="skw-dev-card">
+                <div class="skw skw-dev-avatar"></div>
+                <div class="skw skw-dev-name"></div>
+                <div class="skw skw-dev-role"></div>
+                <div class="skw skw-dev-desc"></div>
+                <div class="skw skw-dev-desc w88"></div>
+                <div class="skw skw-dev-desc w64"></div>
+            </div>
+
+            <div class="skw-section-title"><div class="skw skw-section-ic"></div><div class="skw skw-section-txt"></div></div>
+            <div class="skw-contact-grid">
+                <div class="skw-contact">
+                    <div class="skw skw-contact-ic"></div>
+                    <div class="skw skw-contact-lbl" style="width:58%"></div>
+                    <div class="skw skw-contact-val" style="width:76%"></div>
+                </div>
+                <div class="skw-contact">
+                    <div class="skw skw-contact-ic"></div>
+                    <div class="skw skw-contact-lbl" style="width:64%"></div>
+                    <div class="skw skw-contact-val" style="width:76%"></div>
+                </div>
+                <div class="skw-contact">
+                    <div class="skw skw-contact-ic"></div>
+                    <div class="skw skw-contact-lbl" style="width:70%"></div>
+                    <div class="skw skw-contact-val" style="width:68%"></div>
+                </div>
+                <div class="skw-contact">
+                    <div class="skw skw-contact-ic"></div>
+                    <div class="skw skw-contact-lbl" style="width:54%"></div>
+                    <div class="skw skw-contact-val" style="width:80%"></div>
+                </div>
+            </div>
+
+            <div class="skw-section-title"><div class="skw skw-section-ic"></div><div class="skw skw-section-txt w104"></div></div>
+            <div class="skw-contact-grid one">
+                <div class="skw-contact" style="flex-direction:row;align-items:center;gap:14px">
+                    <div class="skw skw-contact-ic rnd" style="width:52px;height:52px"></div>
+                    <div style="flex:1;min-width:0">
+                        <div class="skw skw-contact-lbl" style="width:34%"></div>
+                        <div class="skw skw-contact-val" style="width:44%;margin-top:6px"></div>
+                    </div>
+                </div>
+                <div class="skw-contact" style="flex-direction:row;align-items:center;gap:14px">
+                    <div class="skw skw-contact-ic rnd" style="width:52px;height:52px"></div>
+                    <div style="flex:1;min-width:0">
+                        <div class="skw skw-contact-lbl" style="width:40%"></div>
+                        <div class="skw skw-contact-val" style="width:36%;margin-top:6px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skw-card">
+                <div class="skw-card-head"><div class="skw skw-card-ic"></div><div class="skw skw-card-txt w150"></div></div>
+                <div class="skw skw-hint w94pct"></div>
+                <div class="skw skw-hint w94pct" style="margin-top:8px"></div>
+                <div class="skw skw-hint w94pct" style="margin-top:8px"></div>
+                <div class="skw-reseller">
+                    <div class="skw skw-reseller-pct"></div>
+                    <div class="skw-reseller-l">
+                        <div class="skw skw-reseller-t"></div>
+                        <div class="skw skw-reseller-s"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skw-card">
+                <div class="skw-card-head"><div class="skw skw-card-ic"></div><div class="skw skw-card-txt w186"></div></div>
+                <div class="skw-services">
+                    <div class="skw-service"><div class="skw skw-svc-dot"></div><div class="skw skw-svc-txt" style="width:78%"></div></div>
+                    <div class="skw-service"><div class="skw skw-svc-dot"></div><div class="skw skw-svc-txt" style="width:64%"></div></div>
+                    <div class="skw-service"><div class="skw skw-svc-dot"></div><div class="skw skw-svc-txt" style="width:86%"></div></div>
+                    <div class="skw-service"><div class="skw skw-svc-dot"></div><div class="skw skw-svc-txt" style="width:58%"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <aside class="sidebar">
         <div class="logo">
             <div class="icon"><svg class="svg-ic" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8.5 11l2.5 2.5L15.5 8.5" stroke="#fde047" stroke-width="2.4"/></svg></div>
@@ -174,6 +260,7 @@
             const isMobile = window.matchMedia("(max-width: 900px)").matches || window.matchMedia("(pointer: coarse)").matches;
             const chipName = document.querySelector("#adminEmail .uc-name");
             if (chipName) chipName.innerText = isMobile ? "Admin" : (user.email || "Admin");
+            window.markSkeletonSettled && window.markSkeletonSettled();
             window.adminEmailAddr = user.email;
         });
 

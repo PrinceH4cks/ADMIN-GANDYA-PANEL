@@ -40,6 +40,10 @@
     "users": {
       ".read": "auth != null",
       ".write": "auth != null"
+    },
+    "deviceRegistry": {
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }

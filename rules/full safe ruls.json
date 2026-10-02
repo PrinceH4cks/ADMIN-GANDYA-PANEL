@@ -51,6 +51,10 @@
     "users": {
       ".read": "auth != null && auth.uid === 'XDv9l6BWQbesybaS9oodWVnkLWE3'",
       ".write": "auth != null && auth.uid === 'XDv9l6BWQbesybaS9oodWVnkLWE3'"
+    },
+    "deviceRegistry": {
+      ".read": "auth != null && auth.uid === 'XDv9l6BWQbesybaS9oodWVnkLWE3'",
+      ".write": "auth != null && auth.uid === 'XDv9l6BWQbesybaS9oodWVnkLWE3'"
     }
   }
 }

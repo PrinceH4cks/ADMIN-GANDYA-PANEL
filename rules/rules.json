@@ -44,6 +44,10 @@
     "users": {
       ".read": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
       ".write": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "deviceRegistry": {
+      ".read": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
+      ".write": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
     }
   }
 }
